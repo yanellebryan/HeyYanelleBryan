@@ -1,0 +1,196 @@
+/* ============================================================
+   BASE — Design Tokens · Reset · Typography · Layout Helpers
+   Portfolio: Yanelle Bryan A.
+   ============================================================ */
+
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ── Design Tokens — Dark Mode (default) ── */
+:root {
+  /* Accent */
+  --accent:        #3B82F6;
+  --accent-strong: #1D4ED8;
+  --accent-glow:   rgba(59, 130, 246, 0.25);
+  --accent-subtle: rgba(59, 130, 246, 0.08);
+
+  /* Background layers */
+  --bg:            #070B14;
+  --bg-2:          #0D1526;
+  --bg-3:          #111827;
+
+  /* Surface / Glass */
+  --glass:         rgba(255, 255, 255, 0.04);
+  --glass-hover:   rgba(255, 255, 255, 0.07);
+  --glass-border:  rgba(255, 255, 255, 0.08);
+  --glass-border-accent: rgba(59, 130, 246, 0.35);
+
+  /* Text */
+  --text-primary:  #F0F4FF;
+  --text-secondary:#94A3B8;
+  --text-muted:    #475569;
+
+  /* Semantic */
+  --success: #22C55E;
+  --warning: #F59E0B;
+  --danger:  #EF4444;
+
+  /* Spacing scale */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  40px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --ease-out:   cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-spring:cubic-bezier(0.34, 1.56, 0.64, 1.0);
+  --duration:   280ms;
+
+  /* Theme transition */
+  --theme-transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* ── Design Tokens — Light Mode ── */
+[data-theme="light"] {
+  /* Accent stays the same vibrant blue */
+  --accent:        #2563EB;
+  --accent-strong: #1D4ED8;
+  --accent-glow:   rgba(37, 99, 235, 0.20);
+  --accent-subtle: rgba(37, 99, 235, 0.08);
+
+  /* Background layers — clean white */
+  --bg:            #FFFFFF;
+  --bg-2:          #F8FAFF;
+  --bg-3:          #F1F5FD;
+
+  /* Surface / Glass — frosted white with rainbow hint */
+  --glass:         rgba(255, 255, 255, 0.65);
+  --glass-hover:   rgba(255, 255, 255, 0.85);
+  --glass-border:  rgba(100, 120, 200, 0.15);
+  --glass-border-accent: rgba(37, 99, 235, 0.30);
+
+  /* Text — dark on white */
+  --text-primary:  #0F172A;
+  --text-secondary:#334155;
+  --text-muted:    #64748B;
+
+  /* Semantic */
+  --success: #16A34A;
+  --warning: #D97706;
+  --danger:  #DC2626;
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: var(--radius-full); transition: background 0.3s; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ── Theme transition — applied briefly during switch ── */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition:
+    background-color 0.38s ease,
+    color 0.38s ease,
+    border-color 0.38s ease,
+    box-shadow 0.38s ease !important;
+}
+
+/* ── Selection ── */
+::selection { background: var(--accent-glow); color: var(--text-primary); }
+
+/* ── Layout Helpers ── */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+}
+
+section {
+  position: relative;
+  z-index: 1;
+  padding: var(--space-3xl) 0;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--space-md);
+}
+
+.section-label::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  line-height: 1.1;
+  margin-bottom: var(--space-md);
+}
+
+.section-subtitle {
+  font-size: 17px;
+  color: var(--text-secondary);
+  max-width: 520px;
+  line-height: 1.65;
+}
+
+/* ── SVG Icon Helper ── */
+.icon {
+  display: inline-flex;
+  width: 1em;
+  height: 1em;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
