@@ -4,11 +4,11 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const roles = [
-        'CS Student & Developer',
+        'Software Developer & Engineer',
         'Flutter Mobile Developer',
         'Computer Vision Engineer',
         'Full Stack Developer',
-        'Problem Solver',
+        'Game Developer',
     ];
     let roleIndex = 0;
     let charIndex  = 0;
